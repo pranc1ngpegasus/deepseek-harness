@@ -1,0 +1,13 @@
+[package]
+name = "dsh-shutdown"
+description = "Bounded process-shutdown state machine for long-lived dsh surfaces"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+proptest.workspace = true

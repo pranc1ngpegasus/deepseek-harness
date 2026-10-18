@@ -1,0 +1,31 @@
+[package]
+name = "dsh-cli"
+description = "The dsh launcher: profiles, config dumps, plugin forwarding, and boot"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "dsh"
+path = "src/main.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+dsh-args = { path = "../dsh-args" }
+dsh-config = { path = "../dsh-config" }
+dsh-diagnostics = { path = "../dsh-diagnostics" }
+dsh-profile = { path = "../dsh-profile" }
+dsh-shutdown = { path = "../dsh-shutdown" }
+dsh-tui = { path = "../dsh-tui" }
+nix.workspace = true
+saphyr.workspace = true
+serde_json.workspace = true
+signal-hook.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+tempfile.workspace = true

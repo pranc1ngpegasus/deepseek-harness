@@ -1,0 +1,13 @@
+[package]
+name = "dsh-diagnostics"
+description = "Startup failure reports for the dsh launcher"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+proptest.workspace = true

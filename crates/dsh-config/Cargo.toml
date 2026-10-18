@@ -1,0 +1,16 @@
+[package]
+name = "dsh-config"
+description = "Cordis entry-list patch composition and config dump rendering"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+ryu = "1.0"
+
+[dev-dependencies]
+proptest.workspace = true
