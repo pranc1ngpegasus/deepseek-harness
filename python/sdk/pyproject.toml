@@ -10,10 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "DeepSeek" }]
-dependencies = [
-  "pydantic>=2.12,<3",
-  "deepseek-harness-runtime-bin==0.0.0.dev0",
-]
+dependencies = ["pydantic>=2.12,<3", "deepseek-harness-runtime-bin==0.0.0.dev0"]
 
 [project.urls]
 Homepage = "https://github.com/deepseek-ai/deepseek-harness"
