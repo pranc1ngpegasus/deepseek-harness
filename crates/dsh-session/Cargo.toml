@@ -1,0 +1,18 @@
+[package]
+name = "dsh-session"
+description = "Append-only JSONL session log for the TUI agent"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+dsh-agent = { path = "../dsh-agent" }
+serde_json.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

@@ -1,0 +1,18 @@
+[package]
+name = "dsh-tools"
+description = "Workspace tools for the TUI coding agent"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+dsh-agent = { path = "../dsh-agent" }
+regex.workspace = true
+walkdir.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

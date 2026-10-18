@@ -1,0 +1,45 @@
+name: rust
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-rust
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-nix
+      - name: Format
+        run: nix develop --command cargo fmt --all -- --check
+      - name: Clippy
+        run: nix develop --command cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - name: Test
+        run: nix develop --command cargo test --workspace
+  mutants:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-nix
+      - name: Mutation testing
+        run: >-
+          nix develop --command cargo mutants
+          -p dsh-agent -p dsh-args -p dsh-profile -p dsh-config
+          -p dsh-shutdown -p dsh-diagnostics -p dsh-cli
+          -p dsh-llm -p dsh-tools -p dsh-session -p dsh-tui
+          -j 4 --timeout 120 --no-shuffle
+      - name: Mutation gate
+        run: nix develop --command cargo xtask mutation-gate
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: mutants-report
+          path: mutants.out

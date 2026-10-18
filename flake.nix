@@ -85,6 +85,7 @@
                 cargo-mutants
                 rustToolchain
                 sccache
+                tmux
               ]
               ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (
                 with pkgs;

@@ -1,9 +1,19 @@
 [workspace]
-members = []
+members = ["crates/*", "xtask"]
 resolver = "3"
 
 [workspace.dependencies]
 proptest = "1.12.0"
+nix = { version = "0.30", features = ["signal"] }
+ratatui = "0.30"
+regex = "1.12"
+reqwest = { version = "0.13", features = ["blocking", "json"] }
+saphyr = { version = "0.2.2", default-features = false }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+signal-hook = "0.3.18"
+tempfile = "3.23"
+uuid = { version = "1.28", features = ["v4"] }
+walkdir = "2.5"
 
 [workspace.lints.clippy]
 all = "warn"
@@ -26,7 +36,20 @@ unsafe_code = "deny"
 
 [workspace.package]
 edition = "2024"
-version = "0.0.0"
+version = "0.2.1-rc.2"
+license = "MIT"
+rust-version = "1.89"
 
 [workspace.metadata.crane]
 name = "deepseek-harness"
+
+[workspace.metadata.mutants]
+# Pure crates must report zero surviving mutants.
+no_std_crates = [
+  "dsh-args",
+  "dsh-agent",
+  "dsh-profile",
+  "dsh-config",
+  "dsh-shutdown",
+  "dsh-diagnostics",
+]
