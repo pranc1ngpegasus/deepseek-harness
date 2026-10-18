@@ -52,3 +52,4 @@ native/system/test/bin/
 /.pre-commit-config.yaml
 /result
 /result-*
+/target
